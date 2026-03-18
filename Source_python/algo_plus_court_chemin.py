@@ -44,6 +44,12 @@ class AlgoPlusCourtChemin:
         Retour :
             (matrice des distances, matrice des prédécesseurs sur le plus court chemin).
         """
-        
+        dist = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), np.inf)
+        for i in range(self.graphe.nb_sommets()):
+            dist[i][i] = 0
+        preds = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), None)
+
+        # TODO : à compléter
+        return (dist, preds)
 
 

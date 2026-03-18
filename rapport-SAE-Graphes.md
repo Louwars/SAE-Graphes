@@ -1,6 +1,6 @@
 # Rapport de la SAE Graphes -- Initiation à l'analyse de réseaux sociaux
 Nom et prénom des étudiants du binôme :
-1. 
+1. Cheminard Noah
 2. 
 _(éventuellement le nom et le prénom du 3e étudiant)_
 

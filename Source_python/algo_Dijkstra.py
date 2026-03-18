@@ -39,7 +39,19 @@ class AlgoDijkstra(AlgoPlusCourtChemin):
         dist[s] = 0
         preds = np.full((self.graphe.nb_sommets()), None)
         
-        #TODO : à compléter
+        M = []
+
+        while len(M) < self.graphe.nb_sommets():
+            x = self.sommet_dist_min(dist, M)
+            M.append(x)
+
+            for y in range(self.graphe.nb_sommets()):
+                if y not in M :
+                    vxy = self.graphe.matrice[x][y]
+
+                    if dist[x] + vxy < dist[y]:
+                        dist[y] = dist[x] + vxy
+                        preds[y] = x
         
         return (dist, preds)
     
@@ -59,7 +71,19 @@ class AlgoDijkstra(AlgoPlusCourtChemin):
         #TODO : à compléter
         
         return (dist, preds)
-        
+
+    #Méthode ajouté par moi même
+
+    def sommet_dist_min(self, tab_distances, sommets_marques):
+        x = -1
+
+        for i in range(len(tab_distances)):
+            if i not in sommets_marques:
+                if x == -1:
+                    x = i
+                elif tab_distances[i] < tab_distances[x]:
+                    x = i
+        return x
  
 
 
@@ -103,5 +127,4 @@ if __name__ == "__main__":
     ### Grand graphe : graphe de 200 sommets et 350 arêtes
     
     print("\n ##### Grand graphe #####\n")
-    
-        
+
