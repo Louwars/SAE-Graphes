@@ -110,8 +110,28 @@ class GrapheValueNonOriente:
         Paramètres :
             ens_sommets : ensemble de sommets à partir duquel construire le sous-graphe.
         """
-        #TODO : à compléter
-        return GrapheValueNonOriente(np.array([]))
+        array = self.matrice
+        array2 = np.zeros((len(ens_sommets), (len(ens_sommets))))
+        i = 0
+        for elem in ens_sommets:
+            j = 0
+            for ele2 in ens_sommets:
+                array2[i][j] = array[elem][ele2]
+                j +=1
+            i+=1
+        return GrapheValueNonOriente(array2)
+
+
+
+    def graphe_symetrique(self, graphe):
+        sym = np.zeros((self.nb_sommets(), self.nb_sommets()))
+        for i in range(len(graphe)):
+            for j in range(len(graphe)):
+                if graphe[i][j] == 1:
+                    sym[i][j] = 1
+                    sym[j][i] = 1
+        return GrapheValueNonOriente(sym)
+
     
     
     def calcule_cc(self):
@@ -122,7 +142,7 @@ class GrapheValueNonOriente:
         Retour:
             liste des ensembles de sommets correspondant à des composantes connexes.
         """
-        #TODO : à compléter
+
         return []
         
     
@@ -184,6 +204,8 @@ if __name__ == "__main__":
     print("\t degrés des sommets :", g2.degres_sommets())
     print("\t nb sommets :", g2.nb_sommets())
     print("\t nb arêtes :", g2.nb_aretes())
-    
+
+    test = set([0,1,3])
+    print("\t test", g2.construit_sous_graphe_induit(test))
     print("\nEcriture du graphe dans un fichier")
     g2.ecrit_dans_fichier_dot('graphe2.dot')
