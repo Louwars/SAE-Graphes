@@ -68,7 +68,10 @@ class AlgoDijkstra(AlgoPlusCourtChemin):
             dist[i][i] = 0
         preds = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), None) 
         
-        #TODO : à compléter
+        for k in range(self.graphe.nb_sommets()):
+            dist1, preds1 =self.calculPCCSommet(k)
+            dist[k] = dist1
+            preds[k] = preds1
         
         return (dist, preds)
 
