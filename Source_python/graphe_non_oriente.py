@@ -142,8 +142,13 @@ class GrapheValueNonOriente:
         Retour:
             liste des ensembles de sommets correspondant à des composantes connexes.
         """
+        tab = []
+        for i in range(self.nb_sommets()):
+            for j in range(self.nb_sommets()):
+                if self.matrice[i][j] != math.inf:
+                    tab.append([i, j])
+        return tab
 
-        return []
         
     
     def est_connexe(self):
@@ -187,10 +192,12 @@ class GrapheValueNonOriente:
 if __name__ == "__main__":
     test = np.full([3], math.inf)
     print(test, "\n")
+
     
     m = np.full([3,3], math.inf)
     g = GrapheValueNonOriente(m)
     print("Graphe g:\n", g)
+
     
     m2 = np.array([[math.inf, 3, 2.5, 8],
                    [3,math.inf,math.inf,7],
@@ -198,7 +205,9 @@ if __name__ == "__main__":
                    [8,7,1.5,math.inf],
                   ])
     g2 = GrapheValueNonOriente(m2, {0:"Teddy", 1:"Lisa", 2:"Mohamed", 3:"Levi"})
-    print("\nGraphe g2:\n", g2)
+    print("Graphe g2:\n", g2)
+    print(g2.calcule_cc())
+    ''' print("\nGraphe g2:\n", g2)
     print("\t degré(0) :", g2.degre_sommet(0))
     print("\t degré(1) :", g2.degre_sommet(1))
     print("\t degrés des sommets :", g2.degres_sommets())
@@ -208,4 +217,5 @@ if __name__ == "__main__":
     test = set([0,1,3])
     print("\t test", g2.construit_sous_graphe_induit(test))
     print("\nEcriture du graphe dans un fichier")
-    g2.ecrit_dans_fichier_dot('graphe2.dot')
+    g2.ecrit_dans_fichier_dot('graphe2.dot')'''
+
