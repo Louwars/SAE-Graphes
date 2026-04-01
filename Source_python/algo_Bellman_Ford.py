@@ -25,8 +25,7 @@ class AlgoBellmanFord(AlgoPlusCourtChemin):
             g : graphe valué.
         """
         super().__init__(g)
- 
-    
+
     
     def calculPCCTousSommets(self):
         """
@@ -38,13 +37,10 @@ class AlgoBellmanFord(AlgoPlusCourtChemin):
         dist = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), np.inf)
         for i in range(self.graphe.nb_sommets()):
             dist[i][i] = 0
-        preds = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), None) 
-        
-        #TODO : à compléter
-        
-        return (dist, preds)
-        
-        
+        preds = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), None)
+        liste_cc = []
+
+
     
 
 
