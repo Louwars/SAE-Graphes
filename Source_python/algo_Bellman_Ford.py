@@ -38,11 +38,13 @@ class AlgoBellmanFord(AlgoPlusCourtChemin):
         for i in range(self.graphe.nb_sommets()):
             dist[i][i] = 0
         preds = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), None)
-        liste_cc = []
-
-
-    
-
+        liste_cc = self.graphe.calcul_cc()
+        for k in range(1, self.graphe.nb_sommets()-1):
+            for arc in liste_cc:
+                if dist[arc[0]] + self.graphe[arc] < dist[arc[1]]:
+                    dist[arc[1]] = dist[arc[0]] + self.graphe[arc]
+                    preds[arc[1]] = arc[0]
+        return dist, preds
 
 # Fonction principale
 
