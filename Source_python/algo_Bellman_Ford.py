@@ -27,25 +27,55 @@ class AlgoBellmanFord(AlgoPlusCourtChemin):
         """
         super().__init__(g)
 
-    
+    def calculPCCSommet(self, s: int):
+        """
+        Implémentation fidèle au pseudo-code pour un sommet source s.
+        """
+        n = self.graphe.nb_sommets()
+        # Initialisation
+        d = np.full(n, np.inf)
+        pred = np.full(n, None)
+        d[s] = 0
+
+        # On récupère la liste des arêtes une seule fois
+        # (Chaque arête (u, v) avec poids w)
+        aretes = self.graphe.get_liste_aretes()
+
+        # Boucle principale : k = 1 jusqu'à n-1
+        for k in range(1, n):
+            for (u, v, poids) in aretes:
+                # On traite l'arc u -> v
+                if d[u] + poids < d[v]:
+                    d[v] = d[u] + poids
+                    pred[v] = u
+
+                # On traite l'arc v -> u (car le graphe est non-orienté)
+                if d[v] + poids < d[u]:
+                    d[u] = d[v] + poids
+                    pred[u] = v
+
+        # Détection de cycle absorbant (optionnel selon votre sujet)
+        for (u, v, poids) in aretes:
+            if d[v] > d[u] + poids:
+                print("Il existe un cycle absorbant !")
+                break
+
+        return d, pred
+
     def calculPCCTousSommets(self):
         """
-        Calcule les plus courts chemins, en partant de chacun des sommets du graphe, et
-        en allant vers chacun des sommets du graphe.
-        Retour :
-            (matrice des distances, matrice des prédécesseurs sur le plus court chemin).
+        Lance Bellman-Ford pour chaque sommet afin de remplir les matrices globales.
         """
-        dist = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), np.inf)
-        for i in range(self.graphe.nb_sommets()):
-            dist[i][i] = 0
-        preds = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), None)
-        liste_cc = self.graphe.calcul_cc()
-        for k in range(1, self.graphe.nb_sommets()-1):
-            for arc in liste_cc:
-                if dist[arc[0]] + self.graphe[arc] < dist[arc[1]]:
-                    dist[arc[1]] = dist[arc[0]] + self.graphe[arc]
-                    preds[arc[1]] = arc[0]
-        return dist, preds
+        n = self.graphe.nb_sommets()
+        matrice_dist = np.full((n, n), np.inf)
+        matrice_preds = np.full((n, n), None)
+
+        for s in range(n):
+            dist_s, pred_s = self.calculPCCSommet(s)
+            matrice_dist[s] = dist_s
+            matrice_preds[s] = pred_s
+
+        return matrice_dist, matrice_preds
 
 # Fonction principale
 

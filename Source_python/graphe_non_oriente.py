@@ -185,6 +185,23 @@ class GrapheValueNonOriente:
         # construction du sous-graphe induit correspondant
         return self.construit_sous_graphe_induit(cc)
 
+    def get_liste_aretes(self):
+        """
+        Parcourt la matrice de valuation et retourne la liste de toutes les arêtes.
+        Retour :
+            liste de triplets (u, v, poids)
+        """
+        aretes = []
+        n = self.nb_sommets()
+        for i in range(n):
+            # On commence à i+1 pour ne pas compter les arêtes en double (graphe non orienté)
+            # et éviter la diagonale (distance d'un sommet à lui-même).
+            for j in range(i + 1, n):
+                poids = self.matrice[i][j]
+                if poids != math.inf:
+                    aretes.append((i, j, poids))
+        return aretes
+
 
 
 # Fonction principale
