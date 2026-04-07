@@ -49,7 +49,6 @@ class AlgoPlusCourtChemin:
             dist[i][i] = 0
         preds = np.full((self.graphe.nb_sommets(), self.graphe.nb_sommets()), None)
 
-        # TODO : à compléter
         return (dist, preds)
 
 

@@ -39,7 +39,7 @@ class GrapheValueNonOriente:
             de valuation du graphe.
         """
         res_str = "Noms des sommets :\n" + str(self.noms_sommets) + "\n"
-        res_str = "Matrice de valuation du graphe :\n" + str(self.matrice) + "\n"
+        res_str += "Matrice de valuation du graphe :\n" + str(self.matrice) + "\n"
         return res_str
     
     
