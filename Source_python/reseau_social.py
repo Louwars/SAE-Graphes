@@ -1,3 +1,5 @@
+from operator import length_hint
+
 import numpy as np
 import math
 
@@ -42,8 +44,18 @@ class ReseauSocial:
         Retour :
             densité du graphe.
         """
-        #TODO : à compléter
-        return 0  
+        lengraphe = len(self.graphe.matrice)
+        arete = 0
+
+        if lengraphe == 1:
+            return 0
+
+        for i in range(lengraphe):
+            for j in range(lengraphe):
+                if self.graphe.matrice[i][j] != math.inf:
+                    arete += 1
+
+        return (2 * arete) / (lengraphe * (lengraphe - 1))
     
     
     def degre_sommet(self, s:int):
