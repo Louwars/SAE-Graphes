@@ -44,7 +44,15 @@ class AlgoDijkstra(AlgoPlusCourtChemin):
         self.predecesseurs = preds
         return (dist, preds)
 
+
+# Fonction principale
+
 if __name__ == "__main__":
+    ###################################################
+    ### Petit graphe : graphe de 7 sommets et 9 arêtes
+
+    print("\n ##### Petit graphe #####\n")
+
     matrice = np.array([[math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
                         [1, math.inf, 1, 1, math.inf, math.inf, math.inf],
                         [math.inf, 1, math.inf, 1, 1, math.inf, math.inf],
@@ -54,55 +62,98 @@ if __name__ == "__main__":
                         [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf],
                         ])
     g = GrapheValueNonOriente(matrice)
-    print(g.nb_sommets())
-    print(g.nb_aretes())
-    algoDijkstra = AlgoDijkstra(g)
-    print(algoDijkstra.distances)
-    print(algoDijkstra.predecesseurs)
 
-    matrice_m = np.array([
-        [math.inf, 1, math.inf, 1, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 8],
-        [1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf],
-        [math.inf, 1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 7, math.inf, math.inf, math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf],
-        [1, 1, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, 1, 1, math.inf, 1, math.inf, 2, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 5, math.inf],
-        [5, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, 2, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, 2, math.inf, math.inf, 6, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, 7, math.inf, math.inf, math.inf, 2, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, 6, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf],
-        [math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1],
-        [8, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf]
+    print("nb sommets : ", g.nb_sommets())
+    print("nb arêtes : ", g.nb_aretes())
+
+    # Utilisation de l'algorithme de Dijkstra
+    algoD = AlgoDijkstra(g)
+    print("\n Distances sur les plus courts chemins entre les sommets :\n", algoD.distances)
+    print("\nPrédécesseurs sur les plus courts chemins entre les sommets :\n", algoD.predecesseurs)
+
+    ###################################################
+    ### Moyen graphe : graphe de 20 sommets et 35 arêtes
+
+    print("\n ##### Moyen graphe #####\n")
+
+    matrice = np.array([
+        [math.inf, 1, math.inf, 1, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 8],
+        [1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf],
+        [math.inf, 1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 7, math.inf, math.inf, math.inf,
+         math.inf, 3, math.inf, math.inf, math.inf, math.inf],
+        [1, 1, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, 1, 1, math.inf, 1, math.inf, 2, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, 5, math.inf],
+        [5, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 3, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, 2, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, 2, math.inf,
+         math.inf, 6, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf,
+         math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, 7, math.inf, math.inf, math.inf, 2, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, 6, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf,
+         math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf, math.inf,
+         math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf],
+        [math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1],
+        [8, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf, math.inf, math.inf,
+         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf]
     ])
-    g_m = GrapheValueNonOriente(matrice_m)
-    print(g_m.nb_sommets())
-    print(g_m.nb_aretes())
-    algo_m = AlgoDijkstra(g_m)
-    print(algo_m.distances)
-    print(algo_m.predecesseurs)
+    g = GrapheValueNonOriente(matrice)
 
-    n = 200
-    m = 350
-    matrice_g = np.full((n, n), math.inf)
+    print("nb sommets : ", g.nb_sommets())
+    print("nb arêtes : ", g.nb_aretes())
+
+    # Utilisation de l'algorithme de Dijkstra
+    algoDijkstra = AlgoDijkstra(g)
+    print("\n Distances sur les plus courts chemins entre les sommets :\n", algoDijkstra.distances)
+    print("\nPrédécesseurs sur les plus courts chemins entre les sommets :\n", algoDijkstra.predecesseurs)
+
+    ###################################################
+    ### Grand graphe : graphe de 200 sommets et 350 arêtes
+
+    print("\n ##### Grand graphe #####\n")
+    n = 200  # sommets
+    m = 350  # arêtes
+
+    # Matrice remplie avec inf
+    matrice = np.full((n, n), math.inf)
+
     edges = set()
+
     while len(edges) < m:
         i = random.randint(0, n - 1)
         j = random.randint(0, n - 1)
+
         if i != j and (i, j) not in edges and (j, i) not in edges:
-            matrice_g[i][j] = 1
-            matrice_g[j][i] = 1
+            matrice[i][j] = 1
+            matrice[j][i] = 1  # graphe non orienté
             edges.add((i, j))
-    g_g = GrapheValueNonOriente(matrice_g)
-    print(g_g.nb_sommets())
-    print(g_g.nb_aretes())
-    algo_g = AlgoDijkstra(g_g)
-    print(algo_g.distances)
-    print(algo_g.predecesseurs)
+    g = GrapheValueNonOriente(matrice)
+
+    print("nb sommets : ", g.nb_sommets())
+    print("nb arêtes : ", g.nb_aretes())
+
+    # Utilisation de l'algorithme de Dijkstra
+    algoDijkstra = AlgoDijkstra(g)
+    print("\n Distances sur les plus courts chemins entre les sommets :\n", algoDijkstra.distances)
+    print("\nPrédécesseurs sur les plus courts chemins entre les sommets :\n", algoDijkstra.predecesseurs)
