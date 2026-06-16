@@ -20,8 +20,8 @@ class GrapheValueNonOriente:
         noms_sommets = {}
         valuation_aretes = []
         max_num_sommet = -1
-        patron_sommet = re.compile(r'^\s*(\d+)\s*\[label="([^"]+)"\]')
-        patron_arete = re.compile(r'\s*(\d+)\s*--\s*(\d+)\s*\[label="([^"]+)"\]')
+        patron_sommet = re.compile(r'^\s*(\d+)\s*\[label="?([^"\]\s;]+)"?\]')
+        patron_arete = re.compile(r'\s*(\d+)\s*--\s*(\d+)\s*\[label="?([^"\]\s;]+)"?\]')
         with open(nom_fichier, "r", encoding="utf-8") as f:
             for ligne in f:
                 m = patron_sommet.match(ligne)
@@ -142,3 +142,4 @@ if __name__ == "__main__":
                   ])
     g2 = GrapheValueNonOriente(m2, {0:"Teddy", 1:"Lisa", 2:"Mohamed", 3:"Levi"})
     print(g2)
+    g2.ecrit_dans_fichier_dot('graphe2.dot')
