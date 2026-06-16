@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import time
 import networkx as nx
 import matplotlib.pyplot as plt
 from graphe_non_oriente import GrapheValueNonOriente
@@ -115,26 +116,35 @@ def analyse_reseau_cours_Centrale_Supelec():
                         [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf],
                         ])
     g = GrapheValueNonOriente(matrice)
+    t0 = time.perf_counter()
     algo = AlgoDijkstra(g)
+    t_exec = time.perf_counter() - t0
     rs = ReseauSocial(g, algo)
     rs.afficher_metriques()
+    print(f"Temps de calcul : {t_exec:.5f} s")
     rs.visualiser_reseau()
 
 def analyse_reseau_club_karate():
     print("\nAnalyse du réseau du club de karaté")
     g = GrapheValueNonOriente()
     g.lit_fichier_dot('../Donnees/soc-karate.dot')
+    t0 = time.perf_counter()
     algo = AlgoDijkstra(g)
+    t_exec = time.perf_counter() - t0
     rs = ReseauSocial(g, algo)
     rs.afficher_metriques()
+    print(f"Temps de calcul : {t_exec:.5f} s")
     rs.visualiser_reseau()
 
 def analyse_reseau_deezer():
     print("\n--- Analyse du réseau issu de Deezer ---")
     g = GrapheValueNonOriente()
     g.lit_fichier_dot('../Donnees/reseau_deezer_SAE_3-6.dot')
+    t0 = time.perf_counter()
     algo = AlgoDijkstra(g)
+    t_exec = time.perf_counter() - t0
     rs = ReseauSocial(g, algo)
+    print(f"Temps de calcul : {t_exec:.5f} s")
     print(f"Densité du graphe : {rs.densite_graphe():.6f}")
     print(f"Degré moyen : {rs.degre_moyen_graphe():.4f}")
     print(f"Diamètre : {rs.diametre_graphe()}")
@@ -153,8 +163,11 @@ def analyse_reseau_git():
     print("\n--- Analyse du réseau issu de GitHub ---")
     g = GrapheValueNonOriente()
     g.lit_fichier_dot('../Donnees/reseau_github_SAE_3-6.dot')
+    t0 = time.perf_counter()
     algo = AlgoDijkstra(g)
+    t_exec = time.perf_counter() - t0
     rs = ReseauSocial(g, algo)
+    print(f"Temps de calcul : {t_exec:.5f} s")
     print(f"Densité du graphe : {rs.densite_graphe():.6f}")
     print(f"Degré moyen : {rs.degre_moyen_graphe():.4f}")
     print(f"Diamètre : {rs.diametre_graphe()}")
@@ -173,8 +186,11 @@ def analyse_reseau_twitch():
     print("\n--- Analyse du réseau issu de Twitch ---")
     g = GrapheValueNonOriente()
     g.lit_fichier_dot('../Donnees/reseau_twitch_SAE_3-6.dot')
+    t0 = time.perf_counter()
     algo = AlgoDijkstra(g)
+    t_exec = time.perf_counter() - t0
     rs = ReseauSocial(g, algo)
+    print(f"Temps de calcul : {t_exec:.5f} s")
     print(f"Densité du graphe : {rs.densite_graphe():.6f}")
     print(f"Degré moyen : {rs.degre_moyen_graphe():.4f}")
     print(f"Diamètre : {rs.diametre_graphe()}")
@@ -199,9 +215,12 @@ if __name__ == "__main__":
                         [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf],
                         ])
     g = GrapheValueNonOriente(matrice)
+    t0 = time.perf_counter()
     r = ReseauSocial(g, AlgoDijkstra(g))
+    t_exec = time.perf_counter() - t0
     print(r)
     r.afficher_metriques()
+    print(f"Temps de calcul : {t_exec:.5f} s")
     r.visualiser_reseau()
     analyse_reseau_club_karate()
     analyse_reseau_deezer()
