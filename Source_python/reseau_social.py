@@ -93,16 +93,21 @@ class ReseauSocial:
                 poids = self.graphe.matrice[i][j]
                 if poids != np.inf:
                     G.add_edge(i, j, weight=poids)
-        node_sizes = [self.degre_sommet(i) * 300 for i in range(n)]
-        node_sizes = [size if size > 0 else 100 for size in node_sizes]
-        plt.figure(figsize=(8, 6))
+        node_sizes = [50 + (self.degre_sommet(i) ** 0.5) * 80 for i in range(n)]
+        labels = {}
+        for i in range(n):
+            if n < 50 or self.degre_sommet(i) >= 15:
+                labels[i] = str(self.graphe.noms_sommets.get(i, i))
+        plt.figure(figsize=(10, 8))
         pos = nx.spring_layout(G, seed=42)
         nx.draw(G, pos,
-                with_labels=True,
+                labels=labels,
                 node_size=node_sizes,
                 node_color='lightblue',
-                edge_color='gray',
-                font_size=10,
+                edge_color='lightgray',
+                width=0.5,
+                alpha=0.8,
+                font_size=6,
                 font_weight='bold')
         plt.title(f"Visualisation du Réseau Social (Densité: {self.densite_graphe():.2f})")
         plt.show()
