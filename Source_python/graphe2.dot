@@ -1,0 +1,12 @@
+graph G {
+  0 [label="Teddy"];
+  1 [label="Lisa"];
+  2 [label="Mohamed"];
+  3 [label="Levi"];
+
+  0 -- 1 [label="3.0"];
+  0 -- 2 [label="2.5"];
+  0 -- 3 [label="8.0"];
+  1 -- 3 [label="7.0"];
+  2 -- 3 [label="1.5"];
+}
