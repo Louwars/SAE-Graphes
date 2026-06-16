@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import random
 from graphe_non_oriente import GrapheValueNonOriente
 from algo_plus_court_chemin import AlgoPlusCourtChemin
 
@@ -42,3 +43,66 @@ class AlgoDijkstra(AlgoPlusCourtChemin):
         self.distances = dist
         self.predecesseurs = preds
         return (dist, preds)
+
+if __name__ == "__main__":
+    matrice = np.array([[math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
+                        [1, math.inf, 1, 1, math.inf, math.inf, math.inf],
+                        [math.inf, 1, math.inf, 1, 1, math.inf, math.inf],
+                        [1, 1, 1, math.inf, 1, math.inf, math.inf],
+                        [math.inf, math.inf, 1, 1, math.inf, 1, math.inf],
+                        [math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1],
+                        [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf],
+                        ])
+    g = GrapheValueNonOriente(matrice)
+    print(g.nb_sommets())
+    print(g.nb_aretes())
+    algoDijkstra = AlgoDijkstra(g)
+    print(algoDijkstra.distances)
+    print(algoDijkstra.predecesseurs)
+
+    matrice_m = np.array([
+        [math.inf, 1, math.inf, 1, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 8],
+        [1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf],
+        [math.inf, 1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 7, math.inf, math.inf, math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf],
+        [1, 1, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, 1, 1, math.inf, 1, math.inf, 2, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 5, math.inf],
+        [5, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, 2, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, 2, math.inf, math.inf, 6, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, 7, math.inf, math.inf, math.inf, 2, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, 6, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf],
+        [math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf],
+        [math.inf, math.inf, math.inf, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1],
+        [8, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf]
+    ])
+    g_m = GrapheValueNonOriente(matrice_m)
+    print(g_m.nb_sommets())
+    print(g_m.nb_aretes())
+    algo_m = AlgoDijkstra(g_m)
+    print(algo_m.distances)
+    print(algo_m.predecesseurs)
+
+    n = 200
+    m = 350
+    matrice_g = np.full((n, n), math.inf)
+    edges = set()
+    while len(edges) < m:
+        i = random.randint(0, n - 1)
+        j = random.randint(0, n - 1)
+        if i != j and (i, j) not in edges and (j, i) not in edges:
+            matrice_g[i][j] = 1
+            matrice_g[j][i] = 1
+            edges.add((i, j))
+    g_g = GrapheValueNonOriente(matrice_g)
+    print(g_g.nb_sommets())
+    print(g_g.nb_aretes())
+    algo_g = AlgoDijkstra(g_g)
+    print(algo_g.distances)
+    print(algo_g.predecesseurs)
