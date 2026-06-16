@@ -119,7 +119,7 @@ class ReseauSocial:
         """
         print("Affichage des métriques sur le réseau :")
         if not self.graphe.est_connexe():
-            print("⚠️ Attention : Le réseau n'est pas connexe.")
+            print("Attention : Le réseau n'est pas connexe.")
             print("Calcul des métriques sur la plus grosse composante connexe...\n")
             g_cc = self.graphe.plus_grosse_cc()
 
@@ -236,7 +236,7 @@ def analyse_reseau_deezer():
     """
     print("\n--- Analyse du réseau issu de Deezer ---")
     g = GrapheValueNonOriente()
-    g.lit_fichier_dot('../Donnees/reseau_deezer_SAE_3-1.dot')
+    g.lit_fichier_dot('../Donnees/reseau_deezer_SAE_3-6.dot')
     algo = AlgoDijkstra(g)
     rs = ReseauSocial(g, algo)
 
@@ -266,7 +266,7 @@ def analyse_reseau_git():
     """
     print("\n--- Analyse du réseau issu de GitHub ---")
     g = GrapheValueNonOriente()
-    g.lit_fichier_dot('../Donnees/reseau_github_SAE_3-1.dot')
+    g.lit_fichier_dot('../Donnees/reseau_github_SAE_3-6.dot')
     algo = AlgoDijkstra(g)
     rs = ReseauSocial(g, algo)
 
@@ -296,7 +296,7 @@ def analyse_reseau_twitch():
     """
     print("\n--- Analyse du réseau issu de Twitch ---")
     g = GrapheValueNonOriente()
-    g.lit_fichier_dot('../Donnees/reseau_twitch_SAE_3-1.dot')
+    g.lit_fichier_dot('../Donnees/reseau_twitch_SAE_3-6.dot')
     algo = AlgoDijkstra(g)
     rs = ReseauSocial(g, algo)
 

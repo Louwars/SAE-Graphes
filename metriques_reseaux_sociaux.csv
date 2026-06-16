@@ -1,0 +1,4 @@
+nom du fichier ; densité du graphe ; degré moyen du graphe ; diamètre du graphe ; longueur moyenne du graphe
+reseau_deezer_SAE_3_6.dot ; 0.017403 ; 8.6840 ; 7.0 ; 3.2462
+reseau_github_SAE_3_6.dot ; 0.086309 ; 43.0680 ; 4.0 ; 1.9338
+reseau_twitch_SAE_3_6.dot ; 0.109499 ; 54.6400 ; 3.0 ; 1.9708
