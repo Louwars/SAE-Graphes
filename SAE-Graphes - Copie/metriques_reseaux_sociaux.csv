@@ -1,0 +1,4 @@
+nom du fichier ; densit� du graphe ; degr�s moyen du graphe ; diam�tre du graphe ; longueur moyenne du graphe
+reseau_deezer_SAE_3-12;0,0172;8,584;7;3,2647
+reseau_github_SAE_3-12;0,086958;43,392;4;1,9317
+reseau_twitch_SAE_3-12;0,11006;54,92;3;1,9713
