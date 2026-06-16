@@ -194,6 +194,7 @@ def analyse_reseau_deezer():
         nom = rs.graphe.noms_sommets.get(s, s)
         proximite = rs.proximite_sommet(s)
         print(f"Sommet {nom} : Degré = {d} | Proximité = {proximite:.4f}")
+    rs.visualiser_reseau()
 
 def analyse_reseau_git():
     print("\n--- Analyse du réseau issu de GitHub ---")
@@ -217,6 +218,7 @@ def analyse_reseau_git():
         nom = rs.graphe.noms_sommets.get(s, s)
         proximite = rs.proximite_sommet(s)
         print(f"Sommet {nom} : Degré = {d} | Proximité = {proximite:.4f}")
+    rs.visualiser_reseau()
 
 def analyse_reseau_twitch():
     print("\n--- Analyse du réseau issu de Twitch ---")
@@ -240,6 +242,7 @@ def analyse_reseau_twitch():
         nom = rs.graphe.noms_sommets.get(s, s)
         proximite = rs.proximite_sommet(s)
         print(f"Sommet {nom} : Degré = {d} | Proximité = {proximite:.4f}")
+    rs.visualiser_reseau()
 
 if __name__ == "__main__":
     matrice = np.array([[math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
