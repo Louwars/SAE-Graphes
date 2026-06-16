@@ -1,6 +1,7 @@
 import numpy as np
 import math
 import time
+import random
 import networkx as nx
 import matplotlib.pyplot as plt
 from graphe_non_oriente import GrapheValueNonOriente
@@ -105,6 +106,41 @@ class ReseauSocial:
                 font_weight='bold')
         plt.title(f"Visualisation du Réseau Social (Densité: {self.densite_graphe():.2f})")
         plt.show()
+
+def comparer_temps_execution():
+    print("\n--- Comparaison des temps d'exécution (Dijkstra vs Bellman-Ford) ---")
+    matrice_p = np.array([[math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
+                          [1, math.inf, 1, 1, math.inf, math.inf, math.inf],
+                          [math.inf, 1, math.inf, 1, 1, math.inf, math.inf],
+                          [1, 1, 1, math.inf, 1, math.inf, math.inf],
+                          [math.inf, math.inf, 1, 1, math.inf, 1, math.inf],
+                          [math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1],
+                          [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf],
+                          ])
+    g_p = GrapheValueNonOriente(matrice_p)
+    g_m = GrapheValueNonOriente()
+    g_m.lit_fichier_dot('../Donnees/graph-moyen.dot')
+    n = 200
+    m = 350
+    matrice_g = np.full((n, n), math.inf)
+    edges = set()
+    random.seed(42)
+    while len(edges) < m:
+        i = random.randint(0, n - 1)
+        j = random.randint(0, n - 1)
+        if i != j and (i, j) not in edges and (j, i) not in edges:
+            matrice_g[i][j] = 1
+            matrice_g[j][i] = 1
+            edges.add((i, j))
+    g_g = GrapheValueNonOriente(matrice_g)
+    for nom, g in [("Petit", g_p), ("Moyen", g_m), ("Grand", g_g)]:
+        t0 = time.perf_counter()
+        AlgoDijkstra(g)
+        td = time.perf_counter() - t0
+        t0 = time.perf_counter()
+        AlgoBellmanFord(g)
+        tbf = time.perf_counter() - t0
+        print(f"Graphe {nom:5s} | Dijkstra : {td:.6f} s | Bellman-Ford : {tbf:.6f} s")
 
 def analyse_reseau_cours_Centrale_Supelec():
     matrice = np.array([[math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
@@ -222,6 +258,7 @@ if __name__ == "__main__":
     r.afficher_metriques()
     print(f"Temps de calcul : {t_exec:.5f} s")
     r.visualiser_reseau()
+    comparer_temps_execution()
     analyse_reseau_club_karate()
     analyse_reseau_deezer()
     analyse_reseau_git()
