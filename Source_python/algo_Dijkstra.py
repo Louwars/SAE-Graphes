@@ -142,49 +142,9 @@ if __name__ == "__main__":
 
     print("\n ##### Moyen graphe #####\n")
 
-    matrice = np.array([
-        [math.inf, 1, math.inf, 1, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 8],
-        [1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf],
-        [math.inf, 1, math.inf, 1, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 7, math.inf, math.inf, math.inf,
-         math.inf, 3, math.inf, math.inf, math.inf, math.inf],
-        [1, 1, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, 1, 1, math.inf, 1, math.inf, 2, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, 5, math.inf],
-        [5, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf, 3, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, 2, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, 2, math.inf,
-         math.inf, 6, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf,
-         math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, 7, math.inf, math.inf, math.inf, 2, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 2, math.inf, 1, math.inf, 1,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, 6, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf,
-         math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 6, math.inf, math.inf,
-         math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, 3, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf, math.inf],
-        [math.inf, 4, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1, math.inf],
-        [math.inf, math.inf, math.inf, math.inf, 5, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf, 1],
-        [8, math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 4, math.inf, math.inf, math.inf, math.inf,
-         math.inf, math.inf, math.inf, math.inf, math.inf, math.inf, 1, math.inf]
-    ])
-    g = GrapheValueNonOriente(matrice)
+    g = GrapheValueNonOriente()
+
+    g.lit_fichier_dot('moyen_graphe.dot')
 
     print("nb sommets : ", g.nb_sommets())
     print("nb arêtes : ", g.nb_aretes())
@@ -198,23 +158,10 @@ if __name__ == "__main__":
     ### Grand graphe : graphe de 200 sommets et 350 arêtes
 
     print("\n ##### Grand graphe #####\n")
-    n = 200  # sommets
-    m = 350  # arêtes
+    
+    g = GrapheValueNonOriente()
 
-    # Matrice remplie avec inf
-    matrice = np.full((n, n), math.inf)
-
-    edges = set()
-
-    while len(edges) < m:
-        i = random.randint(0, n - 1)
-        j = random.randint(0, n - 1)
-
-        if i != j and (i, j) not in edges and (j, i) not in edges:
-            matrice[i][j] = 1
-            matrice[j][i] = 1  # graphe non orienté
-            edges.add((i, j))
-    g = GrapheValueNonOriente(matrice)
+    g.lit_fichier_dot('grand_graphe.dot')
 
     print("nb sommets : ", g.nb_sommets())
     print("nb arêtes : ", g.nb_aretes())
