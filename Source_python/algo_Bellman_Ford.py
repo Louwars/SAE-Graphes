@@ -110,7 +110,7 @@ if __name__ == "__main__":
 
     
     g = GrapheValueNonOriente()
-    g.lit_fichier_dot('moyen_graphe.dot')
+    g.lit_fichier_dot('../Donnees/moyen_graphe.dot')
 
     print("nb sommets : ", g.nb_sommets())
     print("nb arêtes : ", g.nb_aretes())
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     
     g = GrapheValueNonOriente()
     
-    g.lit_fichier_dot('grand_graphe.dot')
+    g.lit_fichier_dot('../Donnees/grand_graphe.dot')
     
     print("nb sommets : ", g.nb_sommets())
     print("nb arêtes : ", g.nb_aretes())
